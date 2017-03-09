@@ -1,0 +1,83 @@
+DROP DATAVERSE PeterCraigList IF EXISTS;
+CREATE DATAVERSE PeterCraigList;
+USE PeterCraigList;
+
+DROP DATAVERSE PeterCraigList IF EXISTS;
+CREATE DATAVERSE PeterCraigList;
+USE PeterCraigList;
+
+CREATE TYPE PostingDetailsType AS {
+	location: point?,
+	dateTime: datetime,
+	description: string,
+	amount: float?,
+	ownerID: string,
+	automatedEmailID: string	
+};
+
+CREATE TYPE PostingType AS {
+	postID: string,
+	postInfo: PostingDetailsType
+};
+
+CREATE TYPE ContactType AS {
+	phoneNumber: string,
+	emailID: string
+};
+
+CREATE TYPE OwnerType AS {
+	ownerID: string,
+	contactInfo: ContactType
+};
+
+
+CREATE TYPE AddressType AS {
+	streetname: string,
+	aptNumber: int,
+	city: string,
+	state: string,
+	location: point?
+};
+
+CREATE TYPE JobType AS {
+	postID: string,
+	jobInfo: PostingDetailsType,
+	fullTime: boolean,
+	jobType: string,
+	organizationName: string
+};
+
+CREATE TYPE HousingType AS {
+	postID: string,
+	housingInfo: PostingDetailsType,
+	bedroomNumber: int,
+	address: AddressType,
+	petAllowed: boolean,
+	housingType: string,
+	size: float?
+};
+
+CREATE TYPE EventType AS {
+	postID: string,
+	eventInfo: PostingDetailsType,
+	startDetail: datetime,
+	endDetail: datetime,
+	eventType: string
+};
+
+CREATE TYPE ItemsSaleType AS {
+	postID: string,
+	itemInfo: PostingDetailsType,
+	itemType: string
+};
+
+CREATE TYPE PersonalRomanceType AS {
+	postID: string,
+	personalInfo: PostingDetailsType,
+	age: int,
+	status: string,
+	bodyType: string,
+	ethnicity: string,
+	advertiserGender: string,
+	seekingGender: string
+};

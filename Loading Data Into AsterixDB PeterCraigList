@@ -1,0 +1,9 @@
+USE PeterCraigList;
+LOAD DATASET Owner USING localfs
+       (("path"="127.0.0.1:///Users/Parth/Desktop/Research/PeterCraigList/ownersampledata.adm"),("format"="adm"));
+
+
+
+USE PeterCraigList;
+LOAD DATASET Postings USING localfs
+       (("path"="127.0.0.1:///Users/Parth/Desktop/Research/PeterCraigList/sampledata.adm"),("format"="adm"));

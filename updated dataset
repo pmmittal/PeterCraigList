@@ -1,0 +1,7 @@
+USE PeterCraigList;
+
+CREATE DATASET Owner(OwnerType)
+	PRIMARY KEY ownerID;
+
+CREATE DATASET Postings(PostingType)
+	PRIMARY KEY postID;

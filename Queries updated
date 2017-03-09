@@ -1,0 +1,101 @@
+Q) Select all the vemployees who work for Amazon. (Exact Match Lookup)
+
+Query:
+USE PeterCraigList;
+SELECT VALUE p
+FROM Postings p
+WHERE p.organizationName = "Amazon";
+
+Q) List of all employees who are Fulltime employee at Facebook. (AND Queries)
+
+Query:
+USE PeterCraigList;
+SELECT VALUE p
+FROM Postings p
+WHERE p.fullTime = true AND p.organizationName = "Facebook";
+
+
+Q Number of owners who have losted on petercraiglist. (Grouping and Counting Methods)
+
+Query:
+USE PeterCraigList;
+USE PeterCraigList;
+SELECT COUNT(own) AS numOwners 
+FROM Owner own;
+
+Q Houses that are of size greater than 10000 sq feet and 2 bedrooms. (Range Scan)
+
+SELECT VALUE p
+FROM Postings AS p
+WHERE p.size >=10000 AND p.bedroomNumber = 2;
+
+Q) Select all the products sold by owner of owner ID "b836ce".
+
+SELECT VALUE p
+FROM Postings p
+WHERE p.postInfo.ownerID = "b836ce";
+
+
+Q Give a list of all the produt sold by owner of owner ID "b836ce" and give details of his personal phone number and email address. (Equijoin)
+
+USE PeterCraigList;
+SELECT p AS product ,o AS owner
+FROM Postings p, Owner o
+WHERE p.postInfo.ownerID = "b836ce" AND o.ownerID = "b836ce";
+
+Q Number of owners in database. (Simple Aggregation)
+
+USE PeterCraigList;
+SELECT COUNT(o) AS numOwners
+FROM Owner o;
+
+Inorder to check all the type definations, I created a dataset of each feature and then tried to insert a sample data through the insert method.
+The insert methods are as follows :-
+
+
+1) Jobs
+CREATE DATASET Jobs(JobType)
+PRIMARY KEY postID;
+
+INSERT INTO Jobs
+({"postID": "100","jobInfo":{"location": point("07.44,80.65"),"dateTime": datetime("2014-10-16T01:09:35"),"description": "Work 20 hours a week","amount": 700,"ownerID":"1","automatedEmailID": "abc@gmail.com"}, "fullTime": false, "jobType": "accounting", "organizationName":"WellsFargo"});
+
+
+2) Event
+CREATE DATASET Event(EventType)
+PRIMARY KEY postID;
+
+INSERT INTO Event
+({"postID":"1782","startDetail":datetime("2014-05-26T11:09:35"),"endDetail":datetime("2014-10-16T01:09:35"),"eventType":"Music Concert","eventInfo":{"location": point("07.44,80.65"),"dateTime": datetime("2019-04-26T10:10:35"),"description": "Coldplay Concert","valueAmount": 700, "ownerID": "2","automatedEmailID":"pqr@gmail.com"}});
+
+
+3) ItemSale
+CREATE DATASET ItemSale(ItemSaleType)
+PRIMARY KEY postID;
+
+INSERT INTO ItemSale
+({"postID":"1780", "itemInfo":{"location": point("02.11,80.65"),"dateTime": datetime("2015-09-16T01:09:35"),"description": "Recently Bought","amount": 950,"ownerID":"2","automatedEmailID":"sds@gmail.com"},"itemType": "Clothes"});
+
+4) PersonalRomance
+CREATE DATASET PersonalRomance(PersonalRomanceType)
+PRIMARY KEY postID;
+
+INSERT INTO PersonalRomance
+({"postID":"1782", "personalInfo":{"location": point("02.11,80.65"),"dateTime": datetime("2015-09-16T01:09:35"),"description": "Looking for a friend","amount": 700,"ownerID":"123","automatedEmailID":"abcdef@gmail.com"}, "age": 41, "status": "Seperated","bodyType" : "Heavy","ethnicity": "White","advertiserGender": "Male","seekingGender":"Female"});
+
+5) Housing
+CREATE DATASET Housing(HousingType)
+PRIMARY KEY postID;
+
+INSERT INTO Housing
+({"postID":"1221","housingInfo":{"location": point("02.11,80.65"),"dateTime": datetime("2015-09-16T01:09:35"),"description": "Looking for a friend","amount": 700,"ownerID":"123","automatedEmailID":"awwbcdef@gmail.com"},"bedroomNumber":4,"address":{"streetname":"Berkeley","aptNumber": 277,"city":"Irvine","state": "CA"},"petAllowed":false,"housingType":"rent","size": 122.32})
+
+6) Owner
+CREATE DATASET Owner(OwnerType)
+PRIMARY KEY postID;
+
+INSERT INTO Owner
+({"ownerID": "1c3f6","contactInfo":{"phoneNumber": "219-152-3479","emailID": "idgajli@mail.kz"}});
+
+
+
